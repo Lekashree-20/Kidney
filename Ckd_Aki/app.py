@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import pickle
 import pandas as pd
 import google.generativeai as gemini
+import os
 
 # Configure the Gemma API
 gemini.configure(api_key="AIzaSyBi5Rs6lCU_XjW2QIyYW-oDf-ldm-NLZAw")
@@ -130,4 +131,5 @@ def predict():
         return jsonify({"error": str(e)})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+
